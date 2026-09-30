@@ -1,0 +1,26 @@
+{
+  "name": "tokoo",
+  "version": "0.1.0",
+  "description": "Drive the Tokoo API: find the real importers, buyers and distributors behind customs and shipment flows, filter by HS code and country, and unlock verified buyer contacts with credits. Ships a branded `tokoo` skill plus four task skills: find importers of an HS code, find buyers for a product, find distributors in a country, and check a company's trade record.",
+  "author": {
+    "name": "Tokoo",
+    "url": "https://www.tokoo.app"
+  },
+  "repository": "https://github.com/haijin/tokoo-skills",
+  "homepage": "https://www.tokoo.app/developers",
+  "license": "MIT",
+  "keywords": [
+    "tokoo",
+    "trade-data",
+    "import-export",
+    "importers",
+    "buyers",
+    "distributors",
+    "hs-code",
+    "customs-data",
+    "b2b-leads",
+    "export-sales",
+    "sourcing",
+    "mcp"
+  ]
+}

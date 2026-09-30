@@ -1,0 +1,64 @@
+{
+  "version": "1",
+  "skill": "find-buyers-for-my-product",
+  "split_strategy": "Positives describe a product with no HS code or single target market. Negatives: already-specified HS+country (belongs to find-importers), consumer marketing, sourcing.",
+  "passing_rule": "should_trigger=true -> trigger_rate > 0.5 over N runs. should_trigger=false -> trigger_rate <= 0.5.",
+  "queries": [
+    {
+      "id": "P1",
+      "split": "train",
+      "should_trigger": true,
+      "query": "we manufacture aluminum window frames in Foshan, who should we sell to abroad?",
+      "notes": "Classic exporter ask."
+    },
+    {
+      "id": "P2",
+      "split": "train",
+      "should_trigger": true,
+      "query": "find overseas B2B customers for our organic cashews",
+      "notes": "No HS, no market."
+    },
+    {
+      "id": "P3",
+      "split": "train",
+      "should_trigger": true,
+      "query": "which countries and companies buy products like our electric scooters",
+      "notes": "Market comparison."
+    },
+    {
+      "id": "P4",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "we make PVC pipes in Vietnam and want our first export buyers in Europe",
+      "notes": "Region, not country."
+    },
+    {
+      "id": "P5",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "help me find wholesale buyers abroad for our bamboo toothbrushes",
+      "notes": "Indirect."
+    },
+    {
+      "id": "N1",
+      "split": "train",
+      "should_trigger": false,
+      "query": "who imports HS 8471 into Germany",
+      "notes": "Fully specified: find-importers."
+    },
+    {
+      "id": "N2",
+      "split": "train",
+      "should_trigger": false,
+      "query": "how do I get more customers for my Shopify store",
+      "notes": "Consumer e-commerce."
+    },
+    {
+      "id": "N3",
+      "split": "validation",
+      "should_trigger": false,
+      "query": "find suppliers of aluminum extrusions in China for us to buy from",
+      "notes": "Sourcing."
+    }
+  ]
+}

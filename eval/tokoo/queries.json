@@ -1,0 +1,64 @@
+{
+  "version": "1",
+  "skill": "tokoo",
+  "split_strategy": "Positives name Tokoo or ask about its account/connection. Negatives are task asks without the brand (owned by task skills) and trade statistics.",
+  "passing_rule": "should_trigger=true -> trigger_rate > 0.5 over N runs. should_trigger=false -> trigger_rate <= 0.5.",
+  "queries": [
+    {
+      "id": "P1",
+      "split": "train",
+      "should_trigger": true,
+      "query": "how do I connect the Tokoo MCP server to Claude Code?",
+      "notes": "Setup, brand named."
+    },
+    {
+      "id": "P2",
+      "split": "train",
+      "should_trigger": true,
+      "query": "what's my Tokoo credit balance and what did I spend this week",
+      "notes": "Account."
+    },
+    {
+      "id": "P3",
+      "split": "train",
+      "should_trigger": true,
+      "query": "the Tokoo API gave me a 402 insufficient_credits error, what now",
+      "notes": "Error handling."
+    },
+    {
+      "id": "P4",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "what can tokoo.app do for an exporter like me?",
+      "notes": "Capability question."
+    },
+    {
+      "id": "P5",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "rotate my Tokoo API key",
+      "notes": "Key management."
+    },
+    {
+      "id": "N1",
+      "split": "train",
+      "should_trigger": false,
+      "query": "what was the total value of US imports of steel in 2025?",
+      "notes": "Aggregate statistics."
+    },
+    {
+      "id": "N2",
+      "split": "train",
+      "should_trigger": false,
+      "query": "what is the EU tariff on Chinese e-bikes",
+      "notes": "Tariffs."
+    },
+    {
+      "id": "N3",
+      "split": "validation",
+      "should_trigger": false,
+      "query": "write me a cold email to a German importer",
+      "notes": "Copywriting, no data need."
+    }
+  ]
+}

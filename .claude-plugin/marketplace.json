@@ -1,0 +1,17 @@
+{
+  "name": "tokoo",
+  "owner": {
+    "name": "Tokoo",
+    "url": "https://www.tokoo.app"
+  },
+  "description": "Tokoo plugins: Claude Code skills for finding importers, buyers and distributors from real trade flows, and unlocking their contacts, via the Tokoo API and MCP server.",
+  "plugins": [
+    {
+      "name": "tokoo",
+      "source": "./",
+      "description": "Find importers, buyers and distributors behind real trade flows (HS code + country), check a company's trade record, and unlock buyer contacts with credits.",
+      "category": "trade-data",
+      "tags": ["tokoo", "trade-data", "importers", "buyers", "hs-code", "export-sales", "mcp"]
+    }
+  ]
+}

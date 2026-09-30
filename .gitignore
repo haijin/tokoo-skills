@@ -1,0 +1,6 @@
+.env
+.env.local
+*.ndjson
+eval/**/results/
+node_modules/
+.DS_Store

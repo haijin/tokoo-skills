@@ -1,0 +1,64 @@
+{
+  "version": "1",
+  "skill": "check-company-trade",
+  "split_strategy": "Positives name one company and ask about its trade activity. Negatives: financial or legal screening of a named company, and multi-company lists.",
+  "passing_rule": "should_trigger=true -> trigger_rate > 0.5 over N runs. should_trigger=false -> trigger_rate <= 0.5.",
+  "queries": [
+    {
+      "id": "P1",
+      "split": "train",
+      "should_trigger": true,
+      "query": "does Mueller Rohrtechnik GmbH actually import stainless steel pipes?",
+      "notes": "Verify import."
+    },
+    {
+      "id": "P2",
+      "split": "train",
+      "should_trigger": true,
+      "query": "what does Acme Trading LLC in Dubai buy and from which countries",
+      "notes": "Trade profile."
+    },
+    {
+      "id": "P3",
+      "split": "train",
+      "should_trigger": true,
+      "query": "is this prospect Nordic Home AB a real importer or just a middleman?",
+      "notes": "Vetting."
+    },
+    {
+      "id": "P4",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "who are the suppliers of Casa Verde Importadora in Brazil",
+      "notes": "Counterparties."
+    },
+    {
+      "id": "P5",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "vet Sunrise Distribution Ltd before we send them free samples",
+      "notes": "Pre-sample vetting."
+    },
+    {
+      "id": "N1",
+      "split": "train",
+      "should_trigger": false,
+      "query": "what is the credit rating of Acme Trading LLC",
+      "notes": "Credit."
+    },
+    {
+      "id": "N2",
+      "split": "train",
+      "should_trigger": false,
+      "query": "is Nordic Home AB on any sanctions list",
+      "notes": "Sanctions screening."
+    },
+    {
+      "id": "N3",
+      "split": "validation",
+      "should_trigger": false,
+      "query": "list the top 20 importers of furniture in Sweden",
+      "notes": "Many companies: find-importers."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "skill": "find-importers",
+  "split_strategy": "Core trap: aggregate trade statistics and sourcing suppliers share vocabulary (import, HS code). Two of three traps in train, one held out.",
+  "passing_rule": "should_trigger=true -> trigger_rate > 0.5 over N runs. should_trigger=false -> trigger_rate <= 0.5.",
+  "queries": [
+    {
+      "id": "P1",
+      "split": "train",
+      "should_trigger": true,
+      "query": "who imports HS 8471 into Germany? give me the top 10 companies",
+      "notes": "Direct HS + country."
+    },
+    {
+      "id": "P2",
+      "split": "train",
+      "should_trigger": true,
+      "query": "list importers of solar inverters in Brazil that bought in the last 6 months",
+      "notes": "Product name + country + recency."
+    },
+    {
+      "id": "P3",
+      "split": "train",
+      "should_trigger": true,
+      "query": "which US companies import cotton t-shirts (6109) from Vietnam",
+      "notes": "Origin filter."
+    },
+    {
+      "id": "P4",
+      "split": "train",
+      "should_trigger": true,
+      "query": "find customers in Mexico that are already importing LED panels",
+      "notes": "Indirect: customers = importers."
+    },
+    {
+      "id": "P5",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "show me Polish buyers of HS 9405 and their procurement contacts",
+      "notes": "Contacts intent."
+    },
+    {
+      "id": "P6",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "overseas buyers for HS 7306 in the UAE and Saudi Arabia",
+      "notes": "Two countries."
+    },
+    {
+      "id": "N1",
+      "split": "train",
+      "should_trigger": false,
+      "query": "how much did Germany import of HS 8471 in total last year?",
+      "notes": "Aggregate statistics trap."
+    },
+    {
+      "id": "N2",
+      "split": "train",
+      "should_trigger": false,
+      "query": "find me a factory in China that manufactures LED panels",
+      "notes": "Sourcing suppliers trap."
+    },
+    {
+      "id": "N3",
+      "split": "train",
+      "should_trigger": false,
+      "query": "what is the correct HS code for a bluetooth speaker",
+      "notes": "Classification only."
+    },
+    {
+      "id": "N4",
+      "split": "validation",
+      "should_trigger": false,
+      "query": "what duties apply when importing solar panels into Brazil",
+      "notes": "Tariff trap (held out)."
+    }
+  ]
+}

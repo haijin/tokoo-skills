@@ -1,0 +1,64 @@
+{
+  "version": "1",
+  "skill": "find-distributors",
+  "split_strategy": "Positives ask for resellers (distributor, wholesaler, dealer, trading company) in a country. Negatives: consumer store locators, freight forwarders, hiring agents.",
+  "passing_rule": "should_trigger=true -> trigger_rate > 0.5 over N runs. should_trigger=false -> trigger_rate <= 0.5.",
+  "queries": [
+    {
+      "id": "P1",
+      "split": "train",
+      "should_trigger": true,
+      "query": "find distributors of industrial valves in Saudi Arabia",
+      "notes": "Direct."
+    },
+    {
+      "id": "P2",
+      "split": "train",
+      "should_trigger": true,
+      "query": "wholesalers for kitchen appliances in Nigeria that import from China",
+      "notes": "Wholesaler + origin."
+    },
+    {
+      "id": "P3",
+      "split": "train",
+      "should_trigger": true,
+      "query": "who could be our exclusive dealer for dental equipment in Chile",
+      "notes": "Dealer, indirect."
+    },
+    {
+      "id": "P4",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "trading companies in the UAE that re-export consumer electronics",
+      "notes": "Trading company."
+    },
+    {
+      "id": "P5",
+      "split": "validation",
+      "should_trigger": true,
+      "query": "I need a stockist for our industrial fasteners in Poland",
+      "notes": "Stockist synonym."
+    },
+    {
+      "id": "N1",
+      "split": "train",
+      "should_trigger": false,
+      "query": "where can I buy a Bosch dishwasher near me in Lagos",
+      "notes": "Consumer retail."
+    },
+    {
+      "id": "N2",
+      "split": "train",
+      "should_trigger": false,
+      "query": "recommend a freight forwarder from Shanghai to Jeddah",
+      "notes": "Logistics."
+    },
+    {
+      "id": "N3",
+      "split": "validation",
+      "should_trigger": false,
+      "query": "how do I hire a commission-based sales agent in Chile",
+      "notes": "Hiring."
+    }
+  ]
+}
