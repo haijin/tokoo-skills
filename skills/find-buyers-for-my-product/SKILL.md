@@ -22,10 +22,10 @@ Read `reference.md` first for costs, errors and key handling.
 3. **Compare markets.**
    - Pick up to 5 destinations: the user's priorities, or common markets for
      that product.
-   - For each one, call `search_importers` with `limit: 5` and `months: 12`.
-     Set `origin` to the user's country when you know it.
-   - For each country, summarize: active importers found, typical shipment
-     frequency, and whether they already import from the user's country.
+   - For each one, call `search_importers` with `limit: 5`.
+   - For each country, summarize: active importers found and typical shipment
+     frequency. For the top 2-3 importers, `get_trade_history` shows whether
+     they already buy from the user's country.
    - These calls are free, but stop at about 5 countries so you don't burn the
      daily cap (2,000 rows per org).
 4. **Recommend 1-2 markets** and give the reason, for example "12 active

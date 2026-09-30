@@ -47,12 +47,12 @@ from `.env.local` in a subshell:
 | Tool | Cost | Purpose |
 |---|---|---|
 | `search_hs_codes` | free | Product words → HS codes (`q`) |
-| `search_importers` | free | Importers by `hs` (codes or prefixes), `dest` (ISO2), optional `origin`, `months`, `min_shipments`, `limit` ≤ 50, `cursor` |
-| `search_companies` | free | Companies by `q`, `country`, `industry`, `role` (`buyer`/`supplier`), `size` |
-| `get_company` | free | Profile and firmographics for one `company_id` |
-| `get_trade_history` | free | Counterparties, lanes, HS mix for `company_id` (`hs`, `months`) |
-| `list_contacts` | free | Masked contacts at a company |
-| `unlock_contacts` | **paid** | `{field: "email"|"phone", contact_ids[≤50], confirm, idempotency_key?}` |
+| `search_importers` | free | Importers by `hs` (list of codes or prefixes), `dest` (list of ISO2), optional `min_shipments` (default 3), `limit` ≤ 50. Most shipments first; one page, no cursor |
+| `search_companies` | free | Companies by `q` (name words), `country` (ISO2 list), `role` (`buyer`/`supplier`), `hs`; `limit`, `cursor` |
+| `get_company` | free | Profile, trade totals and top HS codes for one `company_id` |
+| `get_trade_history` | free | HS mix, recent shipments and counterparties over 24 months for `company_id` (`hs` filter, `limit`) |
+| `list_contacts` | free | Contacts at a `company_id`: title, seniority, masked channels, `unlockable: {email, phone}` |
+| `unlock_contacts` | **paid** | `{field: "email"\|"phone", company_id, contact_ids[≤50], confirm, idempotency_key?}`. All contacts must be at that one company |
 | `get_credit_balance` | free | Current balance |
 
 ## REST endpoints
@@ -60,21 +60,25 @@ from `.env.local` in a subshell:
 | Method | Path | Cost |
 |---|---|---|
 | GET | `/v1/hs?q=` | free |
-| GET | `/v1/importers/search?hs=&dest=&origin=&months=&min_shipments=&limit=&cursor=` | free |
-| GET | `/v1/companies/search?q=&country=&industry=&role=&size=&limit=&cursor=` | free |
+| GET | `/v1/importers/search?hs=&dest=&min_shipments=&limit=` | free |
+| GET | `/v1/companies/search?q=&country=&role=&hs=&limit=&cursor=` | free |
 | GET | `/v1/companies/{id}` | free |
-| GET | `/v1/companies/{id}/trade?hs=&months=` | free |
+| GET | `/v1/companies/{id}/trade?hs=&limit=` | free |
 | GET | `/v1/companies/{id}/contacts` | free (masked) |
-| POST | `/v1/unlocks` body `{field, contact_ids, idempotency_key}` | **paid**; `idempotency_key` required (use a fresh UUID per intended purchase) |
-| GET | `/v1/unlocks?cursor=` | free; contacts the org already owns |
+| POST | `/v1/unlocks` body `{field, company_id, contact_ids, idempotency_key}` | **paid**; `idempotency_key` required (use a fresh UUID per intended purchase) |
+| GET | `/v1/unlocks?limit=` | free; contacts the org already owns, with values |
 | GET | `/v1/me`, `/v1/me/credits`, `/v1/me/credits/transactions` | free |
 
-Pagination: pass `next_cursor` back as `cursor`; `null` means the end.
+Repeated query parameters and comma lists both work for lists: `hs=8504&hs=8541` or
+`hs=8504,8541`. Pagination (company search): pass `next_cursor` back as `cursor`;
+`null` means the end. The full schema is at `https://api.tokoo.app/openapi.json`.
 
 ## Unlock outcomes (per contact)
 
-- `revealed`: value returned.
-- `already_owned`: returned, cost 0.
+Each result has `contact_id` and `status`:
+
+- `revealed`: `name` and `value` (the email or phone) returned.
+- `already_owned`: `name` and `value` returned, cost 0.
 - `refunded_retry_ok`: delivery failed and was refunded; retrying is safe.
 - `replay_refunded`: you reused an idempotency key for an unlock that was
   refunded; retry with a **new** key.

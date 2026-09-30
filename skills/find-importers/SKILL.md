@@ -22,11 +22,10 @@ first for costs, errors and key handling.
    confirm the choice with the user.
 2. **Pin the destination** as ISO2 codes (`DE`, `BR`, `US`). For a region like
    "EU" or "LATAM", ask which 2-5 countries matter most, then query each one.
-3. **Search.** Call `search_importers` with:
-   - `hs` and `dest`
-   - optional `origin`, for example the user's own country, to find buyers
-     already importing from there
-   - `months` (default 12), `min_shipments` (default 3), `limit` 10
+3. **Search.** Call `search_importers` with `hs` and `dest` (both lists),
+   `min_shipments` (default 3) and `limit` 10. To find buyers already importing
+   from the user's own country, check `get_trade_history` counterparts on the
+   top results; the search itself has no origin filter yet.
 4. **Present a short table** with these columns: company, city/country,
    shipments in the window, last shipment date, matching HS codes, and whether
    contacts exist (`contact_count`). Explain *why* each company is on the list.
