@@ -2,7 +2,7 @@
 
 <!-- SOURCE OF TRUTH. Edit this file only, then run scripts/sync-reference.sh.
      Each skill ships its own copy (skills/<name>/reference.md) because
-     `npx skills add --skill <name>` installs a single skill folder. CI fails
+     `npx skills add --skill <name>` installs a single skill folder. `sync-reference.sh --check` fails
      if a copy drifts from this file. -->
 
 > **Get a key.** Sign in at https://www.tokoo.app, open **Settings > Developers**

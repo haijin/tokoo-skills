@@ -93,7 +93,7 @@ bash scripts/lint-skills.sh         # frontmatter, manifests, eval files
 eval/find-importers/run.sh train 3  # trigger eval (needs the claude CLI and jq)
 ```
 
-- Edit only `reference/api.md`. CI fails if a skill's `reference.md` drifts
+- Edit only `reference/api.md`. Run `bash scripts/sync-reference.sh --check` before a push: it fails if a skill's `reference.md` drifts
   from it.
 - The evals allow only the Skill tool and never use
   `--dangerously-skip-permissions`.
