@@ -2,7 +2,10 @@
   "mcpServers": {
     "tokoo": {
       "type": "http",
-      "url": "https://mcp.tokoo.app/mcp"
+      "url": "https://www.tokoo.app/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${TOKOO_API_KEY}"
+      }
     }
   }
 }

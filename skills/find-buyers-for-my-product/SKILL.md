@@ -1,10 +1,10 @@
 ---
 name: find-buyers-for-my-product
-description: Use when an exporter or manufacturer describes what they make and wants to know who could buy it abroad, without a precise HS code or target market yet, e.g. "we manufacture aluminum window frames in Foshan, who should we sell to", "find overseas customers for our organic cashews", "which countries and companies buy products like ours", "help me find B2B buyers for our electric scooters in Europe". Drives the Tokoo API (api.tokoo.app / mcp.tokoo.app). It maps the product to HS codes, compares candidate destination markets by importer activity, then lists the strongest importers and their masked buyer contacts, with paid unlocks. Skip when the user already gives an HS code and a single destination country (use find-importers). Also skip consumer marketing, retail e-commerce customer acquisition, and finding suppliers to buy from.
+description: Use when an exporter or manufacturer describes what they make and wants to know who could buy it abroad, without a precise HS code or target market yet, e.g. "we manufacture aluminum window frames in Foshan, who should we sell to", "find overseas customers for our organic cashews", "which countries and companies buy products like ours", "help me find B2B buyers for our electric scooters in Europe". Drives the Tokoo API (www.tokoo.app). It maps the product to HS codes, compares candidate destination markets by importer activity, then lists the strongest importers and their masked buyer contacts, with paid unlocks. Skip when the user already gives an HS code and a single destination country (use find-importers). Also skip consumer marketing, retail e-commerce customer acquisition, and finding suppliers to buy from.
 version: "0.1.0"
 metadata:
-  api_base: https://api.tokoo.app/v1
-  mcp_url: https://mcp.tokoo.app/mcp
+  api_base: https://www.tokoo.app/api/v1
+  mcp_url: https://www.tokoo.app/api/mcp
   primary_tool: search_hs_codes
 ---
 

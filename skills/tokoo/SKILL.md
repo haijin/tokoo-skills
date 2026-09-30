@@ -1,10 +1,10 @@
 ---
 name: tokoo
-description: Use when the user names Tokoo (tokoo.app, "the Tokoo API", "Tokoo MCP") or asks what Tokoo can do, how to connect it, their Tokoo credit balance, API keys, errors, or unlocked contacts. General entry point to the Tokoo trade-intelligence API (api.tokoo.app, mcp.tokoo.app), which covers importers, buyers and suppliers found from real customs and shipment flows, filterable by HS code and country, with paid contact unlocks. For a concrete task that doesn't mention Tokoo, prefer the task skills (find-importers, find-buyers-for-my-product, find-distributors, check-company-trade). Skip general trade statistics questions (country-level import totals, tariffs), which are not what Tokoo sells.
+description: Use when the user names Tokoo (tokoo.app, "the Tokoo API", "Tokoo MCP") or asks what Tokoo can do, how to connect it, their Tokoo credit balance, API keys, errors, or unlocked contacts. General entry point to the Tokoo trade-intelligence API (www.tokoo.app), which covers importers, buyers and suppliers found from real customs and shipment flows, filterable by HS code and country, with paid contact unlocks. For a concrete task that doesn't mention Tokoo, prefer the task skills (find-importers, find-buyers-for-my-product, find-distributors, check-company-trade). Skip general trade statistics questions (country-level import totals, tariffs), which are not what Tokoo sells.
 version: "0.1.0"
 metadata:
-  api_base: https://api.tokoo.app/v1
-  mcp_url: https://mcp.tokoo.app/mcp
+  api_base: https://www.tokoo.app/api/v1
+  mcp_url: https://www.tokoo.app/api/mcp
 ---
 
 # tokoo
@@ -16,12 +16,14 @@ file) before the first call. It lists the endpoints, costs, errors, and rules.
 
 1. **Connection.** If MCP tools with `tokoo` in their names are available, use
    them. Otherwise use REST with `TOKOO_API_KEY` loaded from `.env.local` in a
-   subshell (see reference.md). If neither is set up, walk the user through one
-   of these:
-   - Claude Code: `claude mcp add --transport http tokoo https://mcp.tokoo.app/mcp`
-   - claude.ai / ChatGPT: add a custom connector with URL `https://mcp.tokoo.app/mcp`
-   - Scripts: create a key at https://www.tokoo.app/app/developers and put
-     `TOKOO_API_KEY=tk_live_...` in `.env.local`. Never paste it into the chat.
+   subshell (see reference.md). If neither is set up, walk the user through it:
+   - Get a key: sign in at https://www.tokoo.app, open Settings > Developers
+     (https://www.tokoo.app/app/developers) and create an API key.
+   - Put `TOKOO_API_KEY=tk_live_...` in `.env.local` (gitignored) or the shell
+     environment. Never paste it into the chat.
+   - Claude Code: `claude mcp add --transport http tokoo https://www.tokoo.app/api/mcp --header "Authorization: Bearer $TOKOO_API_KEY"`
+   - claude.ai / ChatGPT: add a custom connector with URL
+     `https://www.tokoo.app/api/mcp` and sign in when asked (no key needed).
 2. **Account questions.**
    - Balance: `get_credit_balance` or `GET /v1/me/credits`.
    - Spend history: `GET /v1/me/credits/transactions`.

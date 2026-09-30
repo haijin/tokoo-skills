@@ -1,10 +1,10 @@
 ---
 name: check-company-trade
-description: Use when the user names a specific company and wants to verify or understand its real import/export activity, e.g. "does Müller GmbH actually import stainless steel pipes", "what does Acme Trading Ltd buy and from where", "is this prospect a real importer or a middleman", "who are this company's suppliers", "how often does XYZ ship", "vet this buyer before we send samples". Drives the Tokoo API (api.tokoo.app / mcp.tokoo.app). It resolves the company, then reports its trade history (HS mix, volumes over time, origin and destination lanes, counterparties) and firmographics, with optional masked contacts and paid unlocks. Skip credit ratings, financial statements, legal or sanctions screening, stock or investment analysis, and general company news. For lists of many companies, use find-importers or find-distributors instead.
+description: Use when the user names a specific company and wants to verify or understand its real import/export activity, e.g. "does Müller GmbH actually import stainless steel pipes", "what does Acme Trading Ltd buy and from where", "is this prospect a real importer or a middleman", "who are this company's suppliers", "how often does XYZ ship", "vet this buyer before we send samples". Drives the Tokoo API (www.tokoo.app). It resolves the company, then reports its trade history (HS mix, volumes over time, origin and destination lanes, counterparties) and firmographics, with optional masked contacts and paid unlocks. Skip credit ratings, financial statements, legal or sanctions screening, stock or investment analysis, and general company news. For lists of many companies, use find-importers or find-distributors instead.
 version: "0.1.0"
 metadata:
-  api_base: https://api.tokoo.app/v1
-  mcp_url: https://mcp.tokoo.app/mcp
+  api_base: https://www.tokoo.app/api/v1
+  mcp_url: https://www.tokoo.app/api/mcp
   primary_tool: get_trade_history
 ---
 

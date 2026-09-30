@@ -1,10 +1,10 @@
 ---
 name: find-importers
-description: Use whenever the user wants the actual companies that import a product or HS code into a country or region, e.g. "who imports HS 8471 into Germany", "list importers of solar inverters in Brazil", "top buyers of 6109 cotton t-shirts shipping into the US from Vietnam", "which companies bring LED lighting into Poland", including indirect asks like "who are the overseas buyers for our HS code" or "find customers in Mexico importing what we make" when an HS code or clear product and destination are given. Drives the Tokoo API (api.tokoo.app / mcp.tokoo.app), which returns company-level importers ranked by real shipment evidence, then masked contacts and paid email/phone unlocks. Skip country-level import statistics or totals, tariff or duty questions, and finding suppliers or factories (the user buying, not selling). If the user describes their product but has no HS code and no target country yet, use find-buyers-for-my-product instead.
+description: Use whenever the user wants the actual companies that import a product or HS code into a country or region, e.g. "who imports HS 8471 into Germany", "list importers of solar inverters in Brazil", "top buyers of 6109 cotton t-shirts shipping into the US from Vietnam", "which companies bring LED lighting into Poland", including indirect asks like "who are the overseas buyers for our HS code" or "find customers in Mexico importing what we make" when an HS code or clear product and destination are given. Drives the Tokoo API (www.tokoo.app), which returns company-level importers ranked by real shipment evidence, then masked contacts and paid email/phone unlocks. Skip country-level import statistics or totals, tariff or duty questions, and finding suppliers or factories (the user buying, not selling). If the user describes their product but has no HS code and no target country yet, use find-buyers-for-my-product instead.
 version: "0.1.0"
 metadata:
-  api_base: https://api.tokoo.app/v1
-  mcp_url: https://mcp.tokoo.app/mcp
+  api_base: https://www.tokoo.app/api/v1
+  mcp_url: https://www.tokoo.app/api/mcp
   primary_tool: search_importers
 ---
 

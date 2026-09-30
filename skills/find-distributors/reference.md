@@ -5,20 +5,24 @@
      `npx skills add --skill <name>` installs a single skill folder. CI fails
      if a copy drifts from this file. -->
 
-> **Status: private beta.** `api.tokoo.app` and `mcp.tokoo.app` are not public
-> yet. If a call fails to connect, tell the user the Tokoo API is in private
-> beta and point them to https://www.tokoo.app/developers.
+> **Get a key.** Sign in at https://www.tokoo.app, open **Settings > Developers**
+> (https://www.tokoo.app/app/developers) and create an API key. Keys look like
+> `tk_live_…` and are shown once. A 401 means the key is missing, revoked or
+> expired: send the user back to that page for a new one.
 
 ## Two ways in
 
 1. **MCP (preferred).** If any tool name contains `tokoo` (for example
-   `search_importers`), use the MCP tools. Auth is OAuth, handled by the client;
-   the token never enters the conversation.
-   - Claude Code: `claude mcp add --transport http tokoo https://mcp.tokoo.app/mcp`
-   - claude.ai / ChatGPT: add a custom connector with URL `https://mcp.tokoo.app/mcp`
-2. **REST fallback.** `https://api.tokoo.app/v1`, header
-   `Authorization: Bearer $TOKOO_API_KEY`. Keys look like `tk_live_…` and are
-   created at https://www.tokoo.app/app/developers.
+   `search_importers`), use the MCP tools.
+   - Claude Code, with the key from the environment:
+     `claude mcp add --transport http tokoo https://www.tokoo.app/api/mcp --header "Authorization: Bearer $TOKOO_API_KEY"`
+   - Claude Code without a key: the same command without `--header`; the client
+     opens a Tokoo sign-in in the browser (OAuth).
+   - claude.ai / ChatGPT: add a custom connector with URL
+     `https://www.tokoo.app/api/mcp` and sign in when asked.
+2. **REST.** `https://www.tokoo.app/api/v1`, header
+   `Authorization: Bearer $TOKOO_API_KEY`. OpenAPI:
+   https://www.tokoo.app/api/openapi.json.
 
 **Never print, echo, or ask the user to paste the key into the chat.** Load it
 from `.env.local` in a subshell:
@@ -26,7 +30,7 @@ from `.env.local` in a subshell:
 ```bash
 ( set -a; [ -f .env.local ] && . ./.env.local; set +a
   curl -sS -H "Authorization: Bearer $TOKOO_API_KEY" \
-    "https://api.tokoo.app/v1/me/credits" )
+    "https://www.tokoo.app/api/v1/me/credits" )
 ```
 
 ## Cost model
@@ -71,7 +75,7 @@ from `.env.local` in a subshell:
 
 Repeated query parameters and comma lists both work for lists: `hs=8504&hs=8541` or
 `hs=8504,8541`. Pagination (company search): pass `next_cursor` back as `cursor`;
-`null` means the end. The full schema is at `https://api.tokoo.app/openapi.json`.
+`null` means the end. The full schema is at `https://www.tokoo.app/api/openapi.json`.
 
 ## Unlock outcomes (per contact)
 

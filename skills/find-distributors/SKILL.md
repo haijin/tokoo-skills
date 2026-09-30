@@ -1,10 +1,10 @@
 ---
 name: find-distributors
-description: Use when the user wants distributors, wholesalers, dealers, stockists or trading companies in a specific country for a product category, e.g. "find distributors of industrial valves in Saudi Arabia", "wholesalers for kitchen appliances in Nigeria", "who could be our exclusive dealer for dental equipment in Chile", "trading companies in the UAE that re-export electronics". Drives the Tokoo API (api.tokoo.app / mcp.tokoo.app). It finds companies with the buyer role in that country and favors those whose shipments show repeat imports of the category from several suppliers, which is a distributor pattern rather than an end user. It then lists masked contacts, with paid unlocks. Skip retail store locators, consumer "where can I buy X" questions, logistics or freight forwarders, and hiring sales agents as employees.
+description: Use when the user wants distributors, wholesalers, dealers, stockists or trading companies in a specific country for a product category, e.g. "find distributors of industrial valves in Saudi Arabia", "wholesalers for kitchen appliances in Nigeria", "who could be our exclusive dealer for dental equipment in Chile", "trading companies in the UAE that re-export electronics". Drives the Tokoo API (www.tokoo.app). It finds companies with the buyer role in that country and favors those whose shipments show repeat imports of the category from several suppliers, which is a distributor pattern rather than an end user. It then lists masked contacts, with paid unlocks. Skip retail store locators, consumer "where can I buy X" questions, logistics or freight forwarders, and hiring sales agents as employees.
 version: "0.1.0"
 metadata:
-  api_base: https://api.tokoo.app/v1
-  mcp_url: https://mcp.tokoo.app/mcp
+  api_base: https://www.tokoo.app/api/v1
+  mcp_url: https://www.tokoo.app/api/mcp
   primary_tool: search_importers
 ---
 
